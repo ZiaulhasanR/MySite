@@ -2,6 +2,7 @@
   <div >
       <VideoCom />
       <Section2 />
+    <Contact />
   </div>
 </template>
 
