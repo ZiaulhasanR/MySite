@@ -3,30 +3,24 @@ import nodemailer from 'nodemailer';
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
-
-    // Validate required fields (email is optional)
     if (!body.name || !body.subject || !body.message) {
       return {
         success: false,
         message: 'Name, subject, and message are required fields.'
       };
     }
-
-    // Create a transporter - Configure with your email service
-    // For Gmail, you need to use App Password (not your regular password)
-    // Go to: https://myaccount.google.com/apppasswords
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER || 'ziaulhasanf@gmail.com',
-        pass: process.env.EMAIL_PASSWORD || 'your-app-password-here' // Replace with your app password
+        pass: process.env.EMAIL_PASSWORD || 'your-app-password-here'
       }
     });
 
     // Email content
     const mailOptions = {
       from: process.env.EMAIL_USER || 'ziaulhasanf@gmail.com',
-      to: 'ziaulhasanf@gmail.com', // Your email where you want to receive messages
+      to: 'ziaulhasanf@gmail.com',
       replyTo: body.email || 'noreply@yoursite.com',
       subject: `Contact Form: ${body.subject}`,
       html: `

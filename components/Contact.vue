@@ -281,13 +281,15 @@ const socialLinks = [
 
               <!-- Submit Button -->
               <button type="submit" class="submit-button" :disabled="isSubmitting">
-                <span v-if="!isSubmitting">
+                <span class="button-gradient"></span>
+                <span class="button-shine"></span>
+                <span v-if="!isSubmitting" class="button-content">
                   <span>Send Message</span>
                   <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
                 </span>
-                <span v-else class="loading-spinner">
+                <span v-else class="button-content loading-spinner">
                   <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -669,40 +671,196 @@ const socialLinks = [
 
 /* Submit Button */
 .submit-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  gap: 12px;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
   color: white;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 4px 15px rgba(102, 126, 234, 0.4),
+    0 10px 40px rgba(118, 75, 162, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-.submit-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:active {
+  transform: translateY(1px) scale(0.98);
 }
 
 .submit-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  animation: none;
 }
 
-.button-icon {
-  width: 20px;
-  height: 20px;
+.button-gradient {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #667eea);
+  background-size: 300% 300%;
+  border-radius: 16px;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.4s ease;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.submit-button:hover:not(:disabled) .button-gradient {
+  opacity: 1;
+  animation: gradientShift 2s ease infinite, pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.button-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.button-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
   transition: transform 0.3s ease;
 }
 
+.button-icon {
+  width: 22px;
+  height: 22px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  background-position: 100% 0;
+  box-shadow:
+    0 6px 25px rgba(102, 126, 234, 0.6),
+    0 15px 50px rgba(118, 75, 162, 0.5),
+    0 0 60px rgba(240, 147, 251, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: buttonFloat 3s ease infinite;
+}
+
+@keyframes buttonFloat {
+  0%, 100% { transform: translateY(-3px) scale(1.02) rotateX(0deg); }
+  50% { transform: translateY(-5px) scale(1.03) rotateX(2deg); }
+}
+
 .submit-button:hover:not(:disabled) .button-icon {
-  transform: translateX(3px);
+  transform: translateX(5px) rotate(15deg) scale(1.1);
+}
+
+.submit-button:hover:not(:disabled) .button-content {
+  transform: translateZ(10px);
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-spinner svg {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* Ripple effect on click */
+.submit-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+}
+
+.submit-button:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Glow animation */
+@keyframes glow {
+  0%, 100% {
+    box-shadow:
+      0 4px 15px rgba(102, 126, 234, 0.4),
+      0 10px 40px rgba(118, 75, 162, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 6px 25px rgba(102, 126, 234, 0.7),
+      0 15px 60px rgba(118, 75, 162, 0.6),
+      0 0 80px rgba(240, 147, 251, 0.4);
+  }
+}
+
+.submit-button:not(:disabled) {
+  animation: glow 3s ease-in-out infinite;
 }
 
 .loading-spinner {
@@ -710,170 +868,5 @@ const socialLinks = [
   align-items: center;
   gap: 10px;
 }
-
-/* Success Message */
-.success-message {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.1) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 12px;
-  margin-top: 24px;
-  animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.success-icon {
-  width: 32px;
-  height: 32px;
-  color: #10b981;
-  flex-shrink: 0;
-}
-
-.success-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #10b981;
-  margin-bottom: 4px;
-}
-
-.success-description {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Required/Optional indicators */
-.required {
-  color: #ef4444;
-  font-size: 0.9rem;
-}
-
-.optional {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.85rem;
-  font-weight: 400;
-}
-
-/* Error Message */
-.error-message {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: 12px;
-  margin-top: 24px;
-  animation: slideIn 0.3s ease-out;
-}
-
-.error-icon {
-  width: 32px;
-  height: 32px;
-  color: #ef4444;
-  flex-shrink: 0;
-}
-
-.error-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ef4444;
-  margin-bottom: 4px;
-}
-
-.error-description {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Transitions */
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .form-section {
-    position: static;
-  }
-}
-
-@media (max-width: 768px) {
-  .contact-page {
-    padding: 80px 0 60px;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .section-description {
-    font-size: 1rem;
-  }
-
-  .header-section {
-    margin-bottom: 60px;
-  }
-
-  .form-container {
-    padding: 30px 24px;
-  }
-
-  .contact-card {
-    padding: 20px;
-  }
-
-  .contact-icon {
-    width: 48px;
-    height: 48px;
-  }
-}
-
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .section-badge {
-    font-size: 0.8rem;
-    padding: 6px 18px;
-  }
-
-  .form-container {
-    padding: 24px 20px;
-  }
-
-  .submit-button {
-    padding: 14px 24px;
-    font-size: 1rem;
-  }
-
-  .social-links {
-    justify-content: center;
-  }
-}
 </style>
+
