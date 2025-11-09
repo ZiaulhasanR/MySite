@@ -18,7 +18,7 @@
     <div class="relative z-10 container mx-auto px-4 py-20">
 
       <!-- Profile Section -->
-      <div class="flex flex-col items-center mb-16">
+      <div id="about" class="flex flex-col items-center mb-16">
         <!-- Profile Image with decorative elements -->
         <div data-aos="fade-down" class="profile-wrapper mb-8">
           <div class="profile-ring"></div>
@@ -62,7 +62,7 @@
       </div>
 
       <!-- Skills Grid -->
-      <div class="max-w-6xl mx-auto mb-16">
+      <div id="skills" class="max-w-6xl mx-auto mb-16">
         <h2 data-aos="fade-up" class="text-4xl font-bold text-center mb-12">
           <span class="gradient-text">Skills & Expertise</span>
         </h2>
@@ -207,7 +207,7 @@
         <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
           Have a project in mind? Let's collaborate and bring your ideas to life.
         </p>
-        <a href="#contact" class="cta-button">
+        <a href="#lets-work-together" class="cta-button">
           <span>Get In Touch</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

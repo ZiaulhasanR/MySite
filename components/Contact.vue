@@ -193,15 +193,15 @@ const socialLinks = [
           </div>
 
           <!-- Additional Info Card -->
-          <div data-aos="fade-right" data-aos-delay="500" class="availability-card">
-            <div class="availability-header">
-              <div class="status-dot"></div>
-              <span class="status-text">Available for freelance</span>
-            </div>
-            <p class="availability-description">
-              I'm currently available for freelance work and exciting new projects. Let's build something great!
-            </p>
-          </div>
+<!--          <div data-aos="fade-right" data-aos-delay="500" class="availability-card">-->
+<!--            <div class="availability-header">-->
+<!--              <div class="status-dot"></div>-->
+<!--              <span class="status-text">Available for freelance</span>-->
+<!--            </div>-->
+<!--            <p class="availability-description">-->
+<!--              I'm currently available for freelance work and exciting new projects. Let's build something great!-->
+<!--            </p>-->
+<!--          </div>-->
         </div>
 
         <!-- Contact Form -->
@@ -818,10 +818,6 @@ const socialLinks = [
   gap: 12px;
 }
 
-.loading-spinner svg {
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-}
-
 /* Ripple effect on click */
 .submit-button::after {
   content: '';
@@ -867,5 +863,412 @@ const socialLinks = [
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* Error and Success Messages */
+.error-message,
+.success-message {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.success-message {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.error-icon,
+.success-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.error-icon {
+  color: #ef4444;
+}
+
+.success-icon {
+  color: #10b981;
+}
+
+.error-title,
+.success-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.error-title {
+  color: #ef4444;
+}
+
+.success-title {
+  color: #10b981;
+}
+
+.error-description,
+.success-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.optional {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .form-section {
+    position: relative;
+    top: 0;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .section-description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 80px 0 60px;
+  }
+
+  .header-section {
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    line-height: 1.3;
+  }
+
+  .section-description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .section-badge {
+    font-size: 0.8rem;
+    padding: 6px 20px;
+  }
+
+  .info-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-card {
+    padding: 20px;
+    flex-direction: row;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .contact-title {
+    font-size: 0.85rem;
+  }
+
+  .contact-value {
+    font-size: 1rem;
+    word-break: break-word;
+  }
+
+  .social-section {
+    padding: 20px;
+  }
+
+  .social-links {
+    gap: 10px;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .availability-card {
+    padding: 20px;
+  }
+
+  .form-container {
+    padding: 30px 24px;
+  }
+
+  .contact-form {
+    gap: 20px;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+
+  .submit-button {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+
+  .particle-1,
+  .particle-2,
+  .particle-3,
+  .particle-4 {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page {
+    padding: 60px 0 40px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .header-section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin: 16px 0;
+  }
+
+  .gradient-text {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .section-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .section-badge {
+    font-size: 0.75rem;
+    padding: 6px 16px;
+  }
+
+  .content-grid {
+    gap: 40px;
+  }
+
+  .contact-info-section {
+    gap: 20px;
+  }
+
+  .info-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .contact-cards {
+    gap: 16px;
+  }
+
+  .contact-card {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 8px;
+  }
+
+  .contact-title {
+    font-size: 0.8rem;
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+
+  .social-section {
+    padding: 16px;
+  }
+
+  .social-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .social-links {
+    gap: 8px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .availability-card {
+    padding: 16px;
+  }
+
+  .status-text {
+    font-size: 0.9rem;
+  }
+
+  .availability-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .form-container {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .contact-form {
+    gap: 18px;
+  }
+
+  .form-label {
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .label-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .form-textarea {
+    min-height: 120px;
+  }
+
+  .submit-button {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  .button-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .error-message,
+  .success-message {
+    padding: 14px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .error-icon,
+  .success-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .error-title,
+  .success-title {
+    font-size: 0.9rem;
+  }
+
+  .error-description,
+  .success-description {
+    font-size: 0.85rem;
+  }
+
+  .particle-1,
+  .particle-2,
+  .particle-3,
+  .particle-4 {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .contact-value {
+    font-size: 0.85rem;
+  }
+
+  .form-container {
+    padding: 20px 16px;
+  }
+
+  .submit-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
 }
 </style>
