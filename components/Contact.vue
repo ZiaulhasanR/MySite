@@ -124,7 +124,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <div class="contact-page">
+  <div id="lets-work-together" class="contact-page">
     <!-- Background Elements -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="particle particle-1"></div>
@@ -869,4 +869,3 @@ const socialLinks = [
   gap: 10px;
 }
 </style>
-

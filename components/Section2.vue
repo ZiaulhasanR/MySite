@@ -130,7 +130,7 @@
             <div class="stat-label">Years Experience</div>
           </div>
           <div data-aos="zoom-in" data-aos-delay="200" class="stat-card">
-            <div class="stat-number">50+</div>
+            <div class="stat-number">20+</div>
             <div class="stat-label">Projects Completed</div>
           </div>
           <div data-aos="zoom-in" data-aos-delay="300" class="stat-card">
@@ -145,7 +145,7 @@
       </div>
 
       <!-- Services/What I Do -->
-      <div class="max-w-6xl mx-auto">
+      <div id="what-i-do" class="max-w-6xl mx-auto">
         <h2 data-aos="fade-up" class="text-4xl font-bold text-center mb-12">
           <span class="gradient-text">What I Do</span>
         </h2>
