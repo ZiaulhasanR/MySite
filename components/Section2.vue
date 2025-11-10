@@ -36,7 +36,7 @@
             <span class="gradient-text">About Me</span>
           </h1>
           <p class="text-xl md:text-2xl text-purple-300 font-light tracking-wide">
-            Full Stack Developer & Creative Designer
+            Full Stack Developer
           </p>
         </div>
       </div>
